@@ -1,0 +1,66 @@
+{
+  "name": "apricity-desktop",
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "electron/main.js",
+  "scripts": {
+    "e:dev": "electron --disable-gpu .",
+    "e:build:win": "electron-builder --win",
+    "e:build:win32": "electron-builder --win --ia32",
+    "e:pack": "electron-builder --dir",
+    "e:preview": "electron .",
+    "v:dev": "vite",
+    "v:build": "tsc && vite build",
+    "v:preview": "vite preview",
+    "b:build": "tsc && cross-env ELECTRON=true vite build",
+    "dev": "concurrently -n vite,electron -k \"cross-env BROWSER=none yarn v:dev\" \"yarn e:dev\"",
+    "build:win": "yarn b:build && yarn e:build:win",
+    "build:win32": "yarn b:build && yarn e:build:win32"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^6.1.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.8",
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "concurrently": "^8.2.2",
+    "electron": "^28.2.0",
+    "electron-store": "^8.1.0",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "prettier": "^3.2.4",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8"
+  },
+  "build": {
+    "appId": "com.ariaazadipour.apricity",
+    "productName": "Apricity",
+    "copyright": "Copyright © 2022 Dev Addict",
+    "mac": {
+      "category": "public.app-category.games",
+      "icon": "assets/icons/icon.icns"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets",
+      "output": "edist"
+    },
+    "win": {
+      "icon": "assets/icons/icon.ico"
+    }
+  }
+}
