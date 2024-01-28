@@ -64,21 +64,6 @@ export const INITIAL_SEQUENCES: Sequence[] = [
 				text: 'I wonder if anyone is home.',
 			},
 			{
-				type: TaskType.WAIT,
-				value: 1000,
-			},
-		],
-	},
-	{
-		key: 'home-living-room',
-		name: 'Home Living Room',
-		image: '/images/home-living-room.jpg',
-		tasks: [
-			{
-				type: TaskType.WAIT,
-				value: 1000,
-			},
-			{
 				type: TaskType.TALK,
 				character: Character.MAIN,
 				text: 'Hello Mom!!!',

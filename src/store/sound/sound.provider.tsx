@@ -1,59 +1,35 @@
-import {
-	FC,
-	PropsWithChildren,
-	useCallback,
-	useEffect,
-	useRef,
-	useState,
-} from 'react';
+import {FC, PropsWithChildren, useEffect, useRef, useState} from 'react';
 import styled from 'styled-components';
 
 import {SoundContext} from './sound.context.ts';
 import {useApp} from '../../hooks/store/app.hook.ts';
-import {DEFAULT_SOUND, SOUNDS} from '../../constants/sounds.constant.ts';
+import {SOUNDS} from '../../constants/sounds.constant.ts';
 import {Sound} from '../../types/sound.ts';
 
 const Audio = styled.audio``;
 
 export const SoundProvider: FC<PropsWithChildren> = ({children}) => {
-	const calledRef = useRef(false);
+	const audioRef = useRef<HTMLAudioElement>(null);
 
-	const [sound, setSound] = useState<Sound>(DEFAULT_SOUND);
+	const {sound, musicVolume} = useApp();
+
 	const [soundData, setSoundDate] = useState<(typeof SOUNDS)[Sound] | null>(
 		null
 	);
 
-	const {initialized} = useApp();
-
-	const oSetSound = useCallback(
-		(sound: Sound) => {
-			if (!initialized) return;
-
-			setSound(sound);
-			void window.store.set('sound', sound);
-		},
-		[initialized]
-	);
-
-	useEffect(() => {
-		if (calledRef.current) return;
-		calledRef.current = true;
-
-		void (async () => {
-			const sound = await window.store.get('sound');
-			if (sound) setSound(sound as Sound);
-		})();
-	}, []);
 	useEffect(() => {
 		setSoundDate(SOUNDS[sound]);
 	}, [sound]);
+	useEffect(() => {
+		if (!audioRef.current) return;
 
-	console.log(soundData);
+		audioRef.current.volume = musicVolume / 100;
+	}, [musicVolume]);
 
 	return (
-		<SoundContext.Provider value={{sound, setSound: oSetSound}}>
+		<SoundContext.Provider value={{}}>
 			{soundData && (
-				<Audio autoPlay loop>
+				<Audio autoPlay loop ref={audioRef}>
 					<source src={soundData.src} type={soundData.type} />
 				</Audio>
 			)}
