@@ -26,7 +26,13 @@ export const AppProvider: FC<PropsWithChildren> = ({children}) => {
 			};
 		}
 
-		void window.store.set('sound', DEFAULT_SOUND);
+		window.store.get('initialized').then((value) => {
+			if (value === 'true') return;
+
+			void window.store.set('initialized', 'true');
+			void window.store.set('sound', DEFAULT_SOUND);
+			void window.store.set('position', 'INITIAL_SEQUENCES,airport-runway');
+		});
 
 		setInitialized(true);
 	}, []);

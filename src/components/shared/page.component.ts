@@ -10,6 +10,7 @@ export const Page = styled.div<PageProps>`
 	overflow: hidden;
 	display: flex;
 	flex-direction: column;
+	position: relative;
 
 	${({runway}) =>
 		runway &&
