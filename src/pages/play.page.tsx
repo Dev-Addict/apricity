@@ -7,10 +7,9 @@ import {Room} from '../components/play/room.component.tsx';
 export const PlayPage = () => {
 	const [isInitialSequence, setIsInitialSequence] = useState(true);
 
-	const initialSequenceDone = useCallback(
-		() => setIsInitialSequence(false),
-		[]
-	);
+	const initialSequenceDone = useCallback(() => {
+		setIsInitialSequence(false);
+	}, []);
 
 	return (
 		<Page>

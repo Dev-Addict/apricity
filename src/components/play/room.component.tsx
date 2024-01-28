@@ -137,7 +137,9 @@ export const Room = () => {
 					xmlns="http://www.w3.org/2000/svg"
 					width={1920}
 					height={1080}
-					fill="#00000080">
+					viewBox="0 0 1920 1080"
+					fill="#00000080"
+					preserveAspectRatio="xMinYMax meet">
 					<g onClick={onSketchbookClick}>
 						<rect width={100} height={40} x={954} y={674} rx={8} />
 						<path
