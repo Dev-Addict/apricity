@@ -13,11 +13,12 @@ export const PlayPage = () => {
 
 	return (
 		<Page>
-			{isInitialSequence ? (
-				<InitialSequence done={initialSequenceDone} />
-			) : (
-				<Room />
-			)}
+			{/*{isInitialSequence ? (*/}
+			{/*	<InitialSequence done={initialSequenceDone} />*/}
+			{/*) : (*/}
+			{/*	<Room />*/}
+			{/*)}*/}
+			<Room />
 		</Page>
 	);
 };

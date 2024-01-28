@@ -84,9 +84,12 @@ export const SettingsPage = () => {
 		setSound,
 	} = useApp();
 
-	const onMusicChange = useCallback(({value}: Option) => {
-		setSound(value);
-	}, []);
+	const onMusicChange = useCallback(
+		({value}: Option) => {
+			setSound(value);
+		},
+		[setSound]
+	);
 
 	return (
 		<Page runway>
