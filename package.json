@@ -1,5 +1,9 @@
 {
-  "name": "apricity-desktop",
+  "name": "apricity",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dev-Addict/apricity.git"
+  },
   "version": "0.0.0",
   "license": "MIT",
   "main": "electron/main.js",
